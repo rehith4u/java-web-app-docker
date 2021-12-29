@@ -1,0 +1,38 @@
+node{
+    def buildNumber = BUILD_NUMBER
+    stage("Git CheckOut"){
+        git url: 'https://github.com/rehith4u/java-web-app-docker.git',branch: 'master'
+    }
+    
+    stage(" Maven Clean Package"){
+      def mavenHome =  tool name: "Maven-3.6.1", type: "maven"
+      def mavenCMD = "${mavenHome}/bin/mvn"
+      sh "${mavenCMD} clean package"
+    } 
+    
+    stage("Build Docker Image") {
+         sh "docker build -t 172.31.40.149:8083/java-web-app:${buildNumber} ."
+    }
+    
+    stage("Docker Push"){
+        withCredentials([string(credentialsId: 'Private_Repo_Pwd', variable: 'Private_Repo_Pwd')]) {
+          sh "docker login -u admin -p ${Private_Repo_Pwd} 172.31.40.149:8083"
+        }
+        sh "docker push 172.31.40.149:8083/java-web-app:${buildNumber}"
+        
+    }
+    
+    // Remove local image in Jenkins Server
+    stage("Remove Local Image"){
+        sh "docker rmi -f 172.31.40.149:8083/java-web-app:${buildNumber}"
+    }
+    
+    stage("Deploy to docker swarm cluster"){
+        sshagent(['Docker_Swarm_Manager_Dev']) {
+            withCredentials([string(credentialsId: 'Private_Repo_Pwd', variable: 'Private_Repo_Pwd')])
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.86.26 docker login -u admin -p ${Private_Repo_Pwd} 172.31.40.149:8083'
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.86.26 docker service rm javawebapp || true'
+            sh "ssh ubuntu@172.31.86.26 docker service create --name javawebapp -p 8080:8080 --replicas 2 --with-registry-auth 172.31.40.149:8083/java-web-app:${buildNumber}"
+        }
+    }
+}
