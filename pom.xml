@@ -102,6 +102,7 @@
 
 	</dependencies>
 	
+	<--
 	<distributionManagement>
 	    <repository>
 	      <id>nexus</id>
@@ -114,7 +115,8 @@
 	      <url>http://13.233.48.150:8081/repository/wallmart-snapshot/</url>
 	    </snapshotRepository>
 	</distributionManagement>
-	
+        -->
+
 	<build>
 		<plugins>
 			<plugin>
