@@ -102,7 +102,7 @@
 
 	</dependencies>
 	
-	<!-- <distributionManagement>
+	<distributionManagement>
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
@@ -113,7 +113,7 @@
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
 	      <url>http://13.233.48.150:8081/repository/wallmart-snapshot/</url>
 	    </snapshotRepository>
-	</distributionManagement> -->
+	</distributionManagement>
 	
 	<build>
 		<plugins>
