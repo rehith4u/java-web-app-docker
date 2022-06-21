@@ -18,7 +18,7 @@
 	</organization>
 
 	<properties>
-		<sonar.host.url>http://52.66.206.1:9000</sonar.host.url>
+		<sonar.host.url>http://52.66.20.1:9000</sonar.host.url>
 		<sonar.login>squ_d16b1992f3f4a3f33a8a6bba01ec2d771eff0ab5</sonar.login>
 		<!-- sonar.password>squ_d16b1992f3f4a3f33a8a6bba01ec2d771eff0ab5</sonar.password -->
 		
