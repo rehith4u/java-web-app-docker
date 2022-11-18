@@ -18,11 +18,12 @@ pipeline{
                 sh "mvn clean package"
                  }
         }
-        
+  /*      
         stage('ExecuteSonarQubeReport'){
             steps{
                 sh "mvn sonar:sonar"
                  }
         }
+  */
     }
 }
