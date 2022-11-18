@@ -5,7 +5,7 @@ applications:
    - java_buildpack
    # - java_buildpack
   stack: cflinuxfs3
-  path: target/WebApp.war
+  path: /var/lib/jenkins/workspace/java_project/target/java-web-app-1.0
   instances: 1
   memory: 1G
   disk_quota: 1G
