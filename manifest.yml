@@ -3,7 +3,7 @@ applications:
 - name: siva
   buildpacks:
    - java_buildpack
-   # - java_buildpack (for ocf)
+   # - java_buildpack
   stack: cflinuxfs3
   path: target/WebApp.war
   instances: 1
@@ -12,4 +12,3 @@ applications:
   
   #routes:
     #- route: release-automation-service-d.apps.io
-
