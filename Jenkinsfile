@@ -7,7 +7,8 @@ pipeline{
         
         stage('CheckoutCode'){
             steps{
-                git credentialsId: 'Git_Credentials', url: 'https://github.com/rehith4u/java-web-app-docker.git'                 }
+                git credentialsId: 'Git_Credentials', url: 'https://github.com/rehith4u/java-web-app-docker.git'
+            }
         }
     
         stage('Build'){
