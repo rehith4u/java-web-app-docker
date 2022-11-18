@@ -1,16 +1,13 @@
 pipeline{
     agent any
     
-    tools{
-        maven "maven_3.0.5"
-         }
+   
     
     stages{
         
         stage('CheckoutCode'){
             steps{
-                git credentialsId: '91edc316-755e-4ca5-bc0c-6f8ca064e04e', url: 'https://github.com/rehith4u/java-web-app-docker.git'
-                 }
+                git credentialsId: 'Git_Credentials', url: 'https://github.com/rehith4u/java-web-app-docker.git'                 }
         }
     
         stage('Build'){
