@@ -16,6 +16,20 @@ pipeline{
                 sh "mvn clean package"
                  }
         }
+        
+   stage ('deploy-dev') {
+      steps {
+	     echo "deploy to PCF-dev stage is running"
+		 sh '''
+		 cf login -a https://api.cf.us10-001.hana.ondemand.com -u rehith4i@gmail.com -p oneplus6T@ -o 09615f5ftrial -s dev
+	     
+		 cf push -f manifest.yml
+
+		 '''
+	  }
+   }
+
+        
   /*      
         stage('ExecuteSonarQubeReport'){
             steps{
